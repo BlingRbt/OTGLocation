@@ -4,7 +4,12 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.view.View
 import androidx.lifecycle.Observer
-import com.amap.api.mapcore.util.it
+import com.amap.api.maps.model.LatLng
+import com.amap.api.maps.model.Poi
+import com.amap.api.navi.AmapNaviPage
+import com.amap.api.navi.AmapNaviParams
+import com.amap.api.navi.AmapNaviType
+import com.amap.api.navi.AmapPageType
 import com.cczhr.otglocation.utils.*
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.activity_main.*
@@ -94,15 +99,35 @@ class MainActivity : BaseActivity() {
     }
 
     fun selectLocation(view: View) {
-        val lat = latitude.text.toString().toDoubleOrNull()
+
+        val start =
+            Poi("北京首都机场", LatLng(40.080525, 116.603039), "B000A28DAE")
+//途经点
+//途经点
+        val poiList: MutableList<Poi> = ArrayList()
+        poiList.add(Poi("故宫", LatLng(39.918058, 116.397026), "B000A8UIN8"))
+//终点
+//终点
+        val end =
+            Poi("北京大学", LatLng(39.941823, 116.426319), "B000A816R6")
+// 组件参数配置
+// 组件参数配置
+        val params =
+            AmapNaviParams(start, poiList, end, AmapNaviType.WALK, AmapPageType.ROUTE)
+// 启动组件
+// 启动组件
+        AmapNaviPage.getInstance().showRouteActivity(applicationContext, params, null)
+      /*  val lat = latitude.text.toString().toDoubleOrNull()
         val lon = longitude.text.toString().toDoubleOrNull()
-        val intent=Intent(this, MapActivity::class.java)
+       // val intent=Intent(this, MapActivity::class.java)
+
+        val intent=Intent(this, NaviActivity::class.java)
         if (lat != null && lon != null) {
             intent.putExtra("lat",lat)
             intent.putExtra("lon",lon)
         }
 
-        startActivityForResult(intent , 102)
+        startActivityForResult(intent , 102)*/
     }
 
 
