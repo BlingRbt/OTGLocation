@@ -113,7 +113,8 @@ class MainActivity : BaseActivity() {
 // 组件参数配置
 // 组件参数配置
         val params =
-            AmapNaviParams(start, poiList, end, AmapNaviType.WALK, AmapPageType.ROUTE)
+            AmapNaviParams(start, poiList, end, AmapNaviType.WALK, AmapPageType.NAVI)
+        params.naviMode=2
 // 启动组件
 // 启动组件
         AmapNaviPage.getInstance().showRouteActivity(applicationContext, params, null)
